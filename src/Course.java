@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Course {
     private int code ;
     private String title;
@@ -11,6 +13,20 @@ public class Course {
         this.codeProfessor = codeProfessor;
     }
 
+    public Course(Scanner input) {
+        do {
+            System.out.print("Code : ");
+            this.code = input.nextInt();
+        }while (DataBase.getCourse(code)!=null);
+        System.out.print("Title : ");
+        this.title = input.nextLine();
+        System.out.print("Number unit : ");
+        this.unit = input.nextInt();
+        do {
+            System.out.print("Professor Code : ");
+            this.codeProfessor = input.nextInt();
+        }while (DataBase.getProfessor(codeProfessor)!=null);
+    }
     public int getCode() {
         return code;
     }

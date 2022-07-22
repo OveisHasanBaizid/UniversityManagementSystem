@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Person {
     private String firstName;
     private String lastName;
@@ -10,7 +12,17 @@ public class Person {
         this.age = age;
         this.address = address;
     }
-
+    public Person(Scanner input) {
+        input.nextLine();
+        System.out.print("FirstName : ");
+        this.firstName = input.nextLine();
+        System.out.print("LastName : ");
+        this.lastName = input.nextLine();
+        System.out.print("Age : ");
+        this.age = input.nextInt();
+        System.out.print("Address : ");
+        this.address = input.nextLine();
+    }
     public String getFirstName() {
         return firstName;
     }
