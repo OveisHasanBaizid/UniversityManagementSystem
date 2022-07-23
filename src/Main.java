@@ -1,6 +1,4 @@
-import javax.xml.crypto.Data;
 import java.util.Scanner;
-
 public class Main {
     Scanner input = new Scanner(System.in);
 
@@ -25,13 +23,14 @@ public class Main {
         } while (item > 3 || item < 1);
         switch (item) {
             case 1 -> loginManager();
-            case 2 , 3 , 4 -> loginAdmin(item);
+            case 2, 3, 4 -> loginAdmin(item);
             case 5 -> loginStudent();
             default -> System.exit(0);
         }
         mainMenu();
     }
-    public void loginManager(){
+
+    public void loginManager() {
         System.out.println("----------------------------------");
         System.out.println("* * * Login Manager * * *");
 
@@ -53,10 +52,11 @@ public class Main {
                 ch = input.next().charAt(0);
                 input.nextLine();
             }
-        }while (ch=='y');
+        } while (ch == 'y');
         mainMenu();
     }
-    public void loginAdmin(int selected){
+
+    public void loginAdmin(int selected) {
         System.out.println("----------------------------------");
         System.out.println("* * * Login Admin * * *");
         char ch = 0;
@@ -66,11 +66,11 @@ public class Main {
             System.out.print("Enter password : ");
             String password = input.nextLine();
             Admin admin = DataBase.getAdmin(username);
-            TypeAdmin typeAdmin = Admin.getTypeAdmin(selected-1);
-            if (admin!=null && admin.getPassword().equals(password) && admin.getTypeAdmin()== typeAdmin) {
-                if (typeAdmin==TypeAdmin.Education)
+            TypeAdmin typeAdmin = Admin.getTypeAdmin(selected - 1);
+            if (admin != null && admin.getPassword().equals(password) && admin.getTypeAdmin() == typeAdmin) {
+                if (typeAdmin == TypeAdmin.Education)
                     new MenuAdminEducation(admin);
-                else if (typeAdmin==TypeAdmin.nutrition)
+                else if (typeAdmin == TypeAdmin.nutrition)
                     new MenuAdminNutrition(admin);
                 else
                     new MenuAdminLibrary(admin);
@@ -80,10 +80,11 @@ public class Main {
                 ch = input.next().charAt(0);
                 input.nextLine();
             }
-        }while (ch=='y');
+        } while (ch == 'y');
         mainMenu();
     }
-    public void loginStudent(){
+
+    public void loginStudent() {
         System.out.println("----------------------------------");
         System.out.println("* * * Login Student * * *");
         char ch = 0;
@@ -93,7 +94,7 @@ public class Main {
             System.out.print("Enter password : ");
             String password = input.nextLine();
             Student student = DataBase.getStudent(username);
-            if (student!=null && student.getPassword().equals(password)) {
+            if (student != null && student.getPassword().equals(password)) {
                 new MenuStudent(student);
             } else {
                 System.out.println("The username or password entered is incorrect.");
@@ -101,9 +102,10 @@ public class Main {
                 ch = input.next().charAt(0);
                 input.nextLine();
             }
-        }while (ch=='y');
+        } while (ch == 'y');
         mainMenu();
     }
+
     public static void main(String[] args) {
         new Main();
     }

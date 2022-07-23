@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Course {
-    private int code ;
+    private int code;
     private String title;
     private int unit;
     private int codeProfessor;
@@ -17,16 +17,19 @@ public class Course {
         do {
             System.out.print("Code : ");
             this.code = input.nextInt();
-        }while (DataBase.getCourse(code)!=null);
+        } while (DataBase.getCourse(code) != null);
         System.out.print("Title : ");
         this.title = input.nextLine();
         System.out.print("Number unit : ");
         this.unit = input.nextInt();
         do {
-            System.out.print("Professor Code : ");
+            System.out.print("Professor Code (0 for null): ");
             this.codeProfessor = input.nextInt();
-        }while (DataBase.getProfessor(codeProfessor)!=null);
+            if (codeProfessor == 0)
+                break;
+        } while (DataBase.getProfessor(codeProfessor) != null);
     }
+
     public int getCode() {
         return code;
     }

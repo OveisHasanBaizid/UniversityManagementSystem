@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Student extends Person{
-    private String stdNumber ;
+public class Student extends Person {
+    private String stdNumber;
     private String password;
     private ArrayList<Integer> coursesCode;
 
@@ -12,16 +12,18 @@ public class Student extends Person{
         this.password = password;
         this.coursesCode = new ArrayList<>();
     }
+
     public Student(Scanner input) {
         super(input);
         do {
             System.out.print("StdNumber : ");
             this.stdNumber = input.nextLine();
-        }while (DataBase.getStudent(stdNumber)!=null);
+        } while (DataBase.getStudent(stdNumber) != null);
         System.out.print("Password : ");
-        this.password  = input.nextLine();
+        this.password = input.nextLine();
         this.coursesCode = new ArrayList<>();
     }
+
     public String getStdNumber() {
         return stdNumber;
     }
