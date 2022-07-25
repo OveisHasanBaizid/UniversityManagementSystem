@@ -6,6 +6,7 @@ public class MenuAdminLibrary {
 
     public MenuAdminLibrary(Admin admin) {
         this.admin = admin;
+        menu();
     }
 
     public void menu() {

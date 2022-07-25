@@ -7,7 +7,8 @@ public class DataBase {
     static ArrayList<Professor> professors = new ArrayList<>();
     static ArrayList<Book> books = new ArrayList<>();
     static ArrayList<BookLoaned> booksLoaned = new ArrayList<>();
-
+    static ArrayList<Food> foods = new ArrayList<>();
+    static ArrayList<ReservedFood> reservedFoods = new ArrayList<>();
     public static Student getStudent(String stdNumber) {
         for (Student s : students) {
             if (s.getStdNumber().equals(stdNumber))
@@ -47,7 +48,13 @@ public class DataBase {
         }
         return null;
     }
-
+    public static Food getFood(int code) {
+        for (Food f: foods) {
+            if (f.getCode() == code)
+                return f;
+        }
+        return null;
+    }
     public static void removeCourse(Course course) {
         courses.remove(course);
     }
@@ -58,5 +65,13 @@ public class DataBase {
 
     public static void removeProfessor(Professor professor) {
         professors.remove(professor);
+    }
+    public static int counterFoods(int code){
+        int count =0;
+        for (ReservedFood r:reservedFoods) {
+            if (r.getCodeFood()==code)
+                count++;
+        }
+        return count;
     }
 }
