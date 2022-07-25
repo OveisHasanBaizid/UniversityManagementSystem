@@ -30,17 +30,20 @@ public class FeedingAutomation {
         }
         menu();
     }
-    public void MyFoodList(){
+
+    public void MyFoodList() {
         System.out.println("----------------------------------");
         System.out.println("* * * My Food List * * *");
-        int counter=0, i=1;
-        for (ReservedFood r:DataBase.reservedFoods) {
-            System.out.println((i+1)+". "+DataBase.getFood(r.getCodeFood()));
+        int counter = 0, i = 1;
+        for (ReservedFood r : DataBase.reservedFoods) {
+            if (r.getStudentNumber().equals(student.getStdNumber()))
+                System.out.println((i + 1) + ". " + DataBase.getFood(r.getCodeFood()));
             counter++;
         }
-        if (counter==0)
+        if (counter == 0)
             System.out.println("Your reserved food list is empty");
     }
+
     public void listAllFood() {
         System.out.println("----------------------------------");
         System.out.println("* * * List All Food * * *");

@@ -87,4 +87,9 @@ public class Student extends Person {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "\tStudent Number : " + stdNumber + "\tPassword : " + password + "\tAverage : " + average + "\tCoursesCode : " + coursesCode;
+    }
 }

@@ -55,7 +55,7 @@ public class MenuAdminLibrary {
                 input.nextLine();
                 if (ch != 'y')
                     menu();
-            } else if (book.isLoaned()) {
+            } else if (book.isBorrowed()) {
                 System.out.println("The desired book is on loan and it is not possible to remove it from the library.");
                 menu();
             } else
@@ -78,11 +78,11 @@ public class MenuAdminLibrary {
     public void listLoanedBook() {
         System.out.println("----------------------------------");
         System.out.println("* * * List All Book * * *");
-        if (DataBase.booksLoaned.size() == 0)
+        if (DataBase.borrowedBooks.size() == 0)
             System.out.println("List is empty.");
         else {
             int i = 1;
-            for (BookLoaned b : DataBase.booksLoaned) {
+            for (BorrowedBook b : DataBase.borrowedBooks) {
                 System.out.println((i++) + ". " + b);
             }
         }

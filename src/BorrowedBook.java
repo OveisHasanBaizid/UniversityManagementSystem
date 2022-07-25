@@ -1,17 +1,17 @@
-public class BookLoaned {
-    private int studentNumber;
+public class BorrowedBook {
+    private String studentNumber;
     private int codeBook;
 
-    public BookLoaned(int studentNumber, int codeBook) {
+    public BorrowedBook(String studentNumber, int codeBook) {
         this.studentNumber = studentNumber;
         this.codeBook = codeBook;
     }
 
-    public int getStudentNumber() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(int studentNumber) {
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
 

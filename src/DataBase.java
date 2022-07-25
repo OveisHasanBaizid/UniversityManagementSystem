@@ -6,7 +6,7 @@ public class DataBase {
     static ArrayList<Course> courses = new ArrayList<>();
     static ArrayList<Professor> professors = new ArrayList<>();
     static ArrayList<Book> books = new ArrayList<>();
-    static ArrayList<BookLoaned> booksLoaned = new ArrayList<>();
+    static ArrayList<BorrowedBook> borrowedBooks = new ArrayList<>();
     static ArrayList<Food> foods = new ArrayList<>();
     static ArrayList<ReservedFood> reservedFoods = new ArrayList<>();
     public static Student getStudent(String stdNumber) {
@@ -44,6 +44,13 @@ public class DataBase {
     public static Book getBook(int code) {
         for (Book b: books) {
             if (b.getCode() == code)
+                return b;
+        }
+        return null;
+    }
+    public static BorrowedBook getBorrowedBook(int code) {
+        for (BorrowedBook b: borrowedBooks) {
+            if (b.getCodeBook() == code)
                 return b;
         }
         return null;

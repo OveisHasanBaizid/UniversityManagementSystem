@@ -25,13 +25,18 @@ public class MenuStudent {
         switch (item) {
             case 1 -> menuManageCourse();
             case 2 -> new FeedingAutomation(student);
-            case 3 -> System.out.println();
-            case 4 -> System.out.println();
+            case 3 -> new Library(student);
+            case 4 -> profile();
             default -> new Main();
         }
         menu();
     }
-
+    public void profile(){
+        System.out.println("----------------------------------");
+        System.out.println("* * * Profile * * *");
+        String text = student.toString().replace("\t","\n");
+        System.out.println(text);
+    }
     public void menuManageCourse() {
         System.out.println("----------------------------------");
         System.out.println("* * * Menu Manage Course * * *");

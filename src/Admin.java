@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Admin extends Person{
     private String username;
     private String password;
@@ -9,7 +11,29 @@ public class Admin extends Person{
         this.password = password;
         this.typeAdmin = typeAdmin;
     }
-
+    public Admin(Scanner input) {
+        super(input);
+        while (true){
+            System.out.print("Username : ");
+            this.username = input.nextLine();
+            if (DataBase.getAdmin(username)!=null)
+                System.out.println("The username entered is duplicate.");
+            else
+                break;
+        }
+        System.out.print("Password : ");
+        this.password = input.nextLine();
+        while (true){
+            System.out.print("Type Admin (1.Education , 2.Nutrition , 3.Library) : ");
+            int item = input.nextInt();
+            if (item>3 || item<1)
+                System.out.println("The entered number is invalid.");
+            else{
+                this.typeAdmin = getTypeAdmin(item);
+                break;
+            }
+        }
+    }
     public TypeAdmin getTypeAdmin() {
         return typeAdmin;
     }
