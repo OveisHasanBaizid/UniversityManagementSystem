@@ -21,7 +21,7 @@ public class MenuAdminNutrition {
             System.out.println("5.Back");
             System.out.print("please choice a item :");
             item = input.nextInt();
-        } while (item > 8 || item < 1);
+        } while (item > 5 || item < 1);
         switch (item) {
             case 1 -> addFood();
             case 2 -> removeFood();

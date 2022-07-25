@@ -61,4 +61,9 @@ public class Course {
     public void setCodeProfessor(int codeProfessor) {
         this.codeProfessor = codeProfessor;
     }
+
+    @Override
+    public String toString() {
+        return "Code : " + code + "\tTitle : " + title +"\tUnit : " + unit + "\tCode Professor=" + codeProfessor;
+    }
 }

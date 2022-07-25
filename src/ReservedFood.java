@@ -22,4 +22,5 @@ public class ReservedFood {
     public void setCodeFood(int codeFood) {
         this.codeFood = codeFood;
     }
+
 }
