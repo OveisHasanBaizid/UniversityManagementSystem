@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataBase {
@@ -81,5 +85,164 @@ public class DataBase {
         }
         return count;
     }
+    //--------------------------------------------------------------------------------
+    public static void writeAdmins() throws IOException {
+        FileWriter fileWriter = new FileWriter("Admins.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Admin admin : admins) {
+            stringBuilder.append(admin.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
 
+    public static void readApartments() throws IOException {
+        FileReader fileReader = new FileReader("apartments.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            admins.add(new Admin(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeBooks() throws IOException {
+        FileWriter fileWriter = new FileWriter("Books.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Book book : books) {
+            stringBuilder.append(book.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readBooks() throws IOException {
+        FileReader fileReader = new FileReader("Books.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            books.add(new Book(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeFoods() throws IOException {
+        FileWriter fileWriter = new FileWriter("Foods.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Food food : foods) {
+            stringBuilder.append(food.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readFoods() throws IOException {
+        FileReader fileReader = new FileReader("Foods.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            foods.add(new Food(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeBorrowedBooks() throws IOException {
+        FileWriter fileWriter = new FileWriter("BorrowedBooks.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (BorrowedBook borrowedBook : borrowedBooks) {
+            stringBuilder.append(borrowedBook.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readBorrowedBooks() throws IOException {
+        FileReader fileReader = new FileReader("BorrowedBooks.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            borrowedBooks.add(new BorrowedBook(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeReservedFoods() throws IOException {
+        FileWriter fileWriter = new FileWriter("ReservedFoods.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (ReservedFood reservedFood : reservedFoods) {
+            stringBuilder.append(reservedFood.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readReservedFoods() throws IOException {
+        FileReader fileReader = new FileReader("ReservedFoods.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            reservedFoods.add(new ReservedFood(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeProfessors() throws IOException {
+        FileWriter fileWriter = new FileWriter("Professors.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Professor professor : professors) {
+            stringBuilder.append(professor.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readProfessors() throws IOException {
+        FileReader fileReader = new FileReader("Professors.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            professors.add(new Professor(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeCourses() throws IOException {
+        FileWriter fileWriter = new FileWriter("Courses.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Course cours : courses) {
+            stringBuilder.append(cours.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readCourses() throws IOException {
+        FileReader fileReader = new FileReader("Courses.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            courses.add(new Course(s));
+        }
+        fileReader.close();
+    }
+    //--------------------------------------------------------------------------------
+    public static void writeStudents() throws IOException {
+        FileWriter fileWriter = new FileWriter("Students.txt");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Student student : students) {
+            stringBuilder.append(student.coder()).append("\n");
+        }
+        fileWriter.write(stringBuilder.toString());
+        fileWriter.close();
+    }
+
+    public static void readStudents() throws IOException {
+        FileReader fileReader = new FileReader("Students.txt");
+        BufferedReader br = new BufferedReader(fileReader);
+        String s;
+        while ((s = br.readLine()) != null) {
+            students.add(new Student(s));
+        }
+        fileReader.close();
+    }
 }

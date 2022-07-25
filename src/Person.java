@@ -12,6 +12,13 @@ public class Person {
         this.age = age;
         this.address = address;
     }
+    public Person(String line) {
+        String [] array = line.split(",");
+        this.firstName = array[0];
+        this.lastName = array[1];
+        this.age = Integer.parseInt(array[2]);
+        this.address = array[3];
+    }
     public Person(Scanner input) {
         input.nextLine();
         System.out.print("FirstName : ");
@@ -54,7 +61,9 @@ public class Person {
     public void setAddress(String address) {
         this.address = address;
     }
-
+    public String coder(){
+        return firstName+","+lastName+","+age+","+address;
+    }
     @Override
     public String toString() {
         return "FirstName : " + firstName + "\tLastName : " + lastName + "\tAge=" + age +

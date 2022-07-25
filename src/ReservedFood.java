@@ -6,7 +6,11 @@ public class ReservedFood {
         this.studentNumber = studentNumber;
         this.codeFood = codeFood;
     }
-
+    public ReservedFood(String line) {
+        String[] array = line.split(",");
+        this.studentNumber = array[0];
+        this.codeFood = Integer.parseInt(array[1]);
+    }
     public String getStudentNumber() {
         return studentNumber;
     }
@@ -22,5 +26,7 @@ public class ReservedFood {
     public void setCodeFood(int codeFood) {
         this.codeFood = codeFood;
     }
-
+    public String coder(){
+        return studentNumber+","+codeFood;
+    }
 }

@@ -12,7 +12,13 @@ public class Course {
         this.unit = unit;
         this.codeProfessor = codeProfessor;
     }
-
+    public Course(String line) {
+        String[] array = line.split(",");
+        this.code = Integer.parseInt(array[0]);
+        this.title = array[1];
+        this.unit =  Integer.parseInt(array[2]);
+        this.codeProfessor = Integer.parseInt(array[3]);
+    }
     public Course(Scanner input) {
         do {
             System.out.print("Code : ");
@@ -61,7 +67,9 @@ public class Course {
     public void setCodeProfessor(int codeProfessor) {
         this.codeProfessor = codeProfessor;
     }
-
+    public String coder(){
+        return code+","+title+","+unit+","+codeProfessor;
+    }
     @Override
     public String toString() {
         return "Code : " + code + "\tTitle : " + title +"\tUnit : " + unit + "\tCode Professor=" + codeProfessor;

@@ -15,6 +15,14 @@ public class Food {
         this.typeFood = typeFood;
         this.price = price;
     }
+    public Food(String line) {
+        String[] array = line.split(",");
+        this.code = Integer.parseInt(array[0]);
+        this.name = array[1];
+        this.amount = Integer.parseInt(array[2]);
+        setTypeFood(array[3]);
+        this.price = Double.parseDouble(array[4]);
+    }
     public Food(Scanner input) {
         while (true){
             System.out.print("Code : ");
@@ -78,7 +86,14 @@ public class Food {
     public void setTypeFood(TypeFood typeFood) {
         this.typeFood = typeFood;
     }
-
+    public void setTypeFood(String typeFood) {
+        if (typeFood.equals("Breakfast"))
+            this.typeFood = TypeFood.Breakfast;
+        else if (typeFood.equals("Lunch"))
+            this.typeFood = TypeFood.Lunch;
+        else
+            this.typeFood = TypeFood.Dinner;
+    }
     public double getPrice() {
         return price;
     }
@@ -86,7 +101,9 @@ public class Food {
     public void setPrice(double price) {
         this.price = price;
     }
-
+    public String coder(){
+        return code+","+name+","+amount+","+typeFood+","+price;
+    }
     @Override
     public String toString() {
         return "Code : " + code + "\tName : " + name + "\tAmount : " + amount + "\tTypeFood=" + typeFood + "\tPrice=" + price;

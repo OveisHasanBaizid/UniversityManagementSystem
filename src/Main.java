@@ -70,7 +70,7 @@ public class Main {
             if (admin != null && admin.getPassword().equals(password) && admin.getTypeAdmin() == typeAdmin) {
                 if (typeAdmin == TypeAdmin.Education)
                     new MenuAdminEducation(admin);
-                else if (typeAdmin == TypeAdmin.nutrition)
+                else if (typeAdmin == TypeAdmin.Nutrition)
                     new MenuAdminNutrition(admin);
                 else
                     new MenuAdminLibrary(admin);

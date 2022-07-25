@@ -6,7 +6,11 @@ public class BorrowedBook {
         this.studentNumber = studentNumber;
         this.codeBook = codeBook;
     }
-
+    public BorrowedBook(String line) {
+        String[] array = line.split(",");
+        this.studentNumber = array[0];
+        this.codeBook = Integer.parseInt(array[1]);
+    }
     public String getStudentNumber() {
         return studentNumber;
     }
@@ -22,7 +26,9 @@ public class BorrowedBook {
     public void setCodeBook(int codeBook) {
         this.codeBook = codeBook;
     }
-
+    public String coder(){
+        return studentNumber+","+codeBook;
+    }
     @Override
     public String toString() {
         return "Student Number : " + studentNumber + "\tCode Book : " + codeBook;

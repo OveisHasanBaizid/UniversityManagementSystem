@@ -12,7 +12,13 @@ public class Professor extends Person{
         this.professorSpecialty = professorSpecialty;
         this.salary = salary;
     }
-
+    public Professor(String line) {
+        super(line);
+        String [] array = line.split(",");
+        this.masterCode = Integer.parseInt(array[4]);
+        setProfessorSpecialty(array[5]);
+        this.salary = Integer.parseInt(array[6]);
+    }
     public Professor(Scanner input) {
         super(input);
         System.out.print("Professor code : ");
@@ -49,6 +55,17 @@ public class Professor extends Person{
         else
             this.professorSpecialty = ProfessorSpecialty.Mechanics;
     }
+    public void setProfessorSpecialty(String professorSpecialty) {
+        switch (professorSpecialty) {
+            case "Mathematics" -> this.professorSpecialty = ProfessorSpecialty.Mathematics;
+            case "Physics" -> this.professorSpecialty = ProfessorSpecialty.Physics;
+            case "Chemistry" -> this.professorSpecialty = ProfessorSpecialty.Chemistry;
+            case "Computer" -> this.professorSpecialty = ProfessorSpecialty.Computer;
+            case "Electricity" -> this.professorSpecialty = ProfessorSpecialty.Electricity;
+            case "Mining" -> this.professorSpecialty = ProfessorSpecialty.Mining;
+            default -> this.professorSpecialty = ProfessorSpecialty.Mechanics;
+        }
+    }
     public int getMasterCode() {
         return masterCode;
     }
@@ -71,5 +88,9 @@ public class Professor extends Person{
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public String coder(){
+        return super.coder()+","+masterCode+","+professorSpecialty+","+salary;
     }
 }

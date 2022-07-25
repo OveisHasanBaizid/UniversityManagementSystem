@@ -14,6 +14,14 @@ public class Book {
         this.author = author;
         this.borrowed = borrowed;
     }
+    public Book(String line) {
+        String[] array = line.split(",");
+        this.code = Integer.parseInt(array[0]);
+        this.title = array[1];
+        this.numberPage = Integer.parseInt(array[2]);
+        this.author = array[3];
+        this.borrowed = Boolean.parseBoolean(array[4]);
+    }
     public Book(Scanner input) {
         System.out.print("Code book : ");
         this.code = input.nextInt();
@@ -64,7 +72,9 @@ public class Book {
     public void setBorrowed(boolean loaned) {
         this.borrowed = loaned;
     }
-
+    public String coder(){
+        return code+","+title+","+numberPage+","+author+","+borrowed;
+    }
     @Override
     public String toString() {
         return "Code : " + code + "\tTitle : " + title + "\tNumber Page : " + numberPage + "\tAuthor : "
