@@ -17,26 +17,64 @@ public class MenuAdminEducation {
         do {
             System.out.println("1.Add course");
             System.out.println("2.Remove course");
-            System.out.println("3.Add Student");
-            System.out.println("4.Remove Student");
-            System.out.println("5.Add professor");
-            System.out.println("6.Remove professor");
-            System.out.println("7.Assignment of course to the professor");
-            System.out.println("8.Back");
+            System.out.println("3.List All course");
+            System.out.println("4.Add Student");
+            System.out.println("5.Remove Student");
+            System.out.println("6.List All Student");
+            System.out.println("7.Add professor");
+            System.out.println("8.Remove professor");
+            System.out.println("9.List All professor");
+            System.out.println("10.Assignment of course to the professor");
+            System.out.println("11.Back");
             System.out.print("please choice a item :");
             item = input.nextInt();
-        } while (item > 8 || item < 1);
+        } while (item > 11 || item < 1);
         switch (item) {
             case 1 -> addCourse();
             case 2 -> removeCourse();
-            case 3 -> addStudent();
-            case 4 -> removeStudent();
-            case 5 -> addProfessor();
-            case 6 -> removeProfessor();
-            case 7 -> assignmentCourseProfessor();
+            case 3 -> listAllCourse();
+            case 4 -> addStudent();
+            case 5 -> removeStudent();
+            case 6 -> listAllStudent();
+            case 7 -> addProfessor();
+            case 8 -> removeProfessor();
+            case 9 -> listAllProfessor();
+            case 10 -> assignmentCourseProfessor();
         }
     }
-
+    public void listAllCourse() {
+        System.out.println("----------------------------------");
+        System.out.println("* * * List All Course * * *");
+        int i = 1;
+        for (Course c : DataBase.courses) {
+            System.out.println((i++) + ". " + c);
+        }
+        if (i==1)
+            System.out.println("Courses list is empty");
+        menu();
+    }
+    public void listAllStudent() {
+        System.out.println("----------------------------------");
+        System.out.println("* * * List All Student * * *");
+        int i = 1;
+        for (Student s : DataBase.students) {
+            System.out.println((i++) + ". " + s);
+        }
+        if (i==1)
+            System.out.println("Students list is empty");
+        menu();
+    }
+    public void listAllProfessor() {
+        System.out.println("----------------------------------");
+        System.out.println("* * * List All Professor * * *");
+        int i = 1;
+        for (Professor p : DataBase.professors) {
+            System.out.println((i++) + ". " + p);
+        }
+        if (i==1)
+            System.out.println("Professors list is empty");
+        menu();
+    }
     public void addCourse() {
         System.out.println("----------------------------------");
         System.out.println("* * * Add Course  * * *");
