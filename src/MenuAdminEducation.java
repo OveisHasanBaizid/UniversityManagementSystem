@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuAdminEducation {
@@ -33,7 +34,6 @@ public class MenuAdminEducation {
             case 5 -> addProfessor();
             case 6 -> removeProfessor();
             case 7 -> assignmentCourseProfessor();
-            default -> new Main();
         }
     }
 
@@ -42,6 +42,11 @@ public class MenuAdminEducation {
         System.out.println("* * * Add Course  * * *");
         DataBase.courses.add(new Course(input));
         System.out.println("New course added successfully");
+        try {
+            DataBase.writeCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -65,6 +70,11 @@ public class MenuAdminEducation {
         }
         DataBase.removeCourse(course);
         System.out.println("Course removed successfully");
+        try {
+            DataBase.writeCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -73,6 +83,11 @@ public class MenuAdminEducation {
         System.out.println("* * * Add Student  * * *");
         DataBase.students.add(new Student(input));
         System.out.println("New student added successfully");
+        try {
+            DataBase.writeStudents();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -80,6 +95,7 @@ public class MenuAdminEducation {
         System.out.println("----------------------------------");
         System.out.println("* * * Remove Student  * * *");
         Student student;
+        input.nextLine();
         while (true) {
             System.out.print("Enter student number for remove : ");
             String stdNumber = input.nextLine();
@@ -96,6 +112,11 @@ public class MenuAdminEducation {
         }
         DataBase.removeStudent(student);
         System.out.println("Course removed successfully");
+        try {
+            DataBase.writeStudents();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -104,6 +125,11 @@ public class MenuAdminEducation {
         System.out.println("* * * Add Professor  * * *");
         DataBase.professors.add(new Professor(input));
         System.out.println("New student added successfully");
+        try {
+            DataBase.writeProfessors();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -127,6 +153,11 @@ public class MenuAdminEducation {
         }
         DataBase.removeProfessor(professor);
         System.out.println("Professor removed successfully");
+        try {
+            DataBase.writeProfessors();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -168,6 +199,11 @@ public class MenuAdminEducation {
         }
             course.setCodeProfessor(professor.getMasterCode());
             System.out.println("Assignment of course to the professor successfully");
+        try {
+            DataBase.writeCourses();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 }

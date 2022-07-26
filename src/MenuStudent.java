@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuStudent {
@@ -11,7 +12,7 @@ public class MenuStudent {
 
     public void menu() {
         System.out.println("----------------------------------");
-        System.out.println("* * * Menu Admin Student  * * *");
+        System.out.println("* * * Menu Student  * * *");
         int item;
         do {
             System.out.println("1.Manage Courses");
@@ -44,38 +45,56 @@ public class MenuStudent {
         do {
             System.out.println("1.Add Course");
             System.out.println("2.Remove Course");
-            System.out.println("3.List Courses");
-            System.out.println("4.Back");
+            System.out.println("3.List my Courses");
+            System.out.println("4.List All Courses");
+            System.out.println("5.Back");
             System.out.print("please choice a item :");
             item = input.nextInt();
-        } while (item > 4 || item < 1);
+        } while (item > 5 || item < 1);
         switch (item) {
             case 1 -> addCourse();
             case 2 -> removeCourse();
-            case 3 -> listAllCourse();
-            default -> new Main();
+            case 3 -> listMyCourse();
+            case 4 -> listAllCourse();
         }
-        menu();
     }
 
-    public void listAllCourse() {
+    public void listMyCourse() {
         System.out.println("----------------------------------");
-        System.out.println("* * * List All Course * * *");
+        System.out.println("* * * List My Course * * *");
         int i = 1;
         for (Integer x : student.getCoursesCode()) {
             System.out.println((i++) + ". " + DataBase.getCourse(x));
         }
+        if (i==1)
+            System.out.println("Your courses list is empty.");
+        menuManageCourse();
+    }
+    public void listAllCourse() {
+        System.out.println("----------------------------------");
+        System.out.println("* * * List All Course * * *");
+        int i = 1;
+        for (Course c : DataBase.courses) {
+            System.out.println((i++) + ". " + c);
+        }
+        if (i==1)
+            System.out.println("Courses list is empty.");
+        menuManageCourse();
     }
 
     public void removeCourse() {
         System.out.println("----------------------------------");
         System.out.println("* * * Remove Course  * * *");
         while (true) {
-            System.out.print("Enter code food for remove : ");
+            System.out.print("Enter code course for remove : ");
             int code = input.nextInt();
-            if (!student.removeCourse(code)) {
-                student.removeCourse(code);
+            if (student.removeCourse(code)) {
                 System.out.println("course removed successfully");
+                try {
+                    DataBase.writeStudents();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             } else {
                 System.out.println("There is no course with this code.");
@@ -83,9 +102,10 @@ public class MenuStudent {
                 char ch = input.next().charAt(0);
                 input.nextLine();
                 if (ch != 'y')
-                    menu();
+                    menuManageCourse();
             }
         }
+        menuManageCourse();
     }
 
     public void addCourse() {
@@ -109,10 +129,16 @@ public class MenuStudent {
                 if (ch != 'y')
                     break;
             } else {
-                if (!student.addCourse(code))
-                    System.out.println("This course has already been taken by you.");
-                else
+                if (student.addCourse(code)){
                     System.out.println("Course added successfully.");
+                    try {
+                        DataBase.writeStudents();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else{
+                    System.out.println("This course has already been taken by you.");
+                }
                 break;
             }
         }

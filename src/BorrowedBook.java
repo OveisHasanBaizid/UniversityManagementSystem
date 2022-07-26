@@ -1,6 +1,6 @@
 public class BorrowedBook {
-    private String studentNumber;
-    private int codeBook;
+    private final String studentNumber;
+    private final int codeBook;
 
     public BorrowedBook(String studentNumber, int codeBook) {
         this.studentNumber = studentNumber;
@@ -15,16 +15,8 @@ public class BorrowedBook {
         return studentNumber;
     }
 
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
     public int getCodeBook() {
         return codeBook;
-    }
-
-    public void setCodeBook(int codeBook) {
-        this.codeBook = codeBook;
     }
     public String coder(){
         return studentNumber+","+codeBook;

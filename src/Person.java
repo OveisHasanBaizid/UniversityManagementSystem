@@ -27,6 +27,7 @@ public class Person {
         this.lastName = input.nextLine();
         System.out.print("Age : ");
         this.age = input.nextInt();
+        input.nextLine();
         System.out.print("Address : ");
         this.address = input.nextLine();
     }
@@ -66,7 +67,7 @@ public class Person {
     }
     @Override
     public String toString() {
-        return "FirstName : " + firstName + "\tLastName : " + lastName + "\tAge=" + age +
+        return "FirstName : " + firstName + "\tLastName : " + lastName + "\tAge : " + age +
                 "\tAddress : " + address;
     }
 }

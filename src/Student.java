@@ -3,18 +3,9 @@ import java.util.Scanner;
 
 public class Student extends Person {
     private String studentNumber;
-    private String password;
+    private final String password;
     private float average;
-    private ArrayList<Integer> coursesCode;
-
-    public Student(float average, String firstName, String lastName, int age, String address, String stdNumber, String password) {
-        super(firstName, lastName, age, address);
-        this.average = average;
-        this.studentNumber = stdNumber;
-        this.password = password;
-        this.coursesCode = new ArrayList<>();
-    }
-
+    private final ArrayList<Integer> coursesCode;
     public Student(String line) {
         super(line);
         String[] array = line.split(",");
@@ -22,7 +13,7 @@ public class Student extends Person {
         this.studentNumber = array[5];
         this.password = array[6];
         this.coursesCode = new ArrayList<>();
-        if (!array[7].isEmpty()) {
+        if (array.length>7) {
             String[] array2 = array[7].split("-");
             for (String s : array2) {
                 coursesCode.add(Integer.parseInt(s));
@@ -40,8 +31,9 @@ public class Student extends Person {
             else
                 System.out.println("The average entered is invalid");
         }
+        input.nextLine();
         do {
-            System.out.print("StdNumber : ");
+            System.out.print("Student Number : ");
             this.studentNumber = input.nextLine();
         } while (DataBase.getStudent(studentNumber) != null);
         System.out.print("Password : ");
@@ -53,34 +45,16 @@ public class Student extends Person {
         return average;
     }
 
-    public void setAverage(float average) {
-        this.average = average;
-    }
-
     public String getStdNumber() {
         return studentNumber;
-    }
-
-    public void setStdNumber(String stdNumber) {
-        this.studentNumber = stdNumber;
     }
 
     public String getPassword() {
         return password;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public ArrayList<Integer> getCoursesCode() {
         return coursesCode;
     }
-
-    public void setCoursesCode(ArrayList<Integer> coursesCode) {
-        this.coursesCode = coursesCode;
-    }
-
     public boolean addCourse(int code) {
         if (existCourse(code))
             return false;
@@ -89,21 +63,18 @@ public class Student extends Person {
     }
 
     public boolean removeCourse(int code) {
-        for (Integer i : coursesCode) {
-            if (code == i) {
-                coursesCode.remove(i);
-                return true;
-            }
-        }
-        return false;
+        if (!existCourse(code))
+            return false;
+        coursesCode.remove((Integer) code);
+        return true;
     }
 
     public boolean existCourse(int code) {
         for (Integer i : coursesCode) {
             if (code == i)
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
     public String coderCodeCourse(){
         StringBuilder s = new StringBuilder();
@@ -115,10 +86,10 @@ public class Student extends Person {
         return s.toString();
     }
     public String coder(){
-        return super.coder()+","+studentNumber+","+password+","+average+","+coderCodeCourse();
+        return super.coder()+","+average+","+studentNumber+","+password+","+coderCodeCourse();
     }
     @Override
     public String toString() {
-        return "\tStudent Number : " + studentNumber + "\tPassword : " + password + "\tAverage : " + average + "\tCoursesCode : " + coursesCode;
+        return super.toString()+"\tStudent Number : " + studentNumber + "\tPassword : " + password + "\tAverage : " + average + "\tCoursesCode : " + coursesCode;
     }
 }

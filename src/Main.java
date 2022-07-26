@@ -3,6 +3,7 @@ public class Main {
     Scanner input = new Scanner(System.in);
 
     public Main() {
+        new DataBase();
         mainMenu();
     }
 
@@ -20,7 +21,7 @@ public class Main {
             System.out.print("please choice a item :");
             item = input.nextInt();
             input.nextLine();
-        } while (item > 3 || item < 1);
+        } while (item > 6 || item < 1);
         switch (item) {
             case 1 -> loginManager();
             case 2, 3, 4 -> loginAdmin(item);
@@ -98,7 +99,7 @@ public class Main {
                 new MenuStudent(student);
             } else {
                 System.out.println("The username or password entered is incorrect.");
-                System.out.print("enter y try again : ");
+                System.out.print("enter 'y' try again : ");
                 ch = input.next().charAt(0);
                 input.nextLine();
             }

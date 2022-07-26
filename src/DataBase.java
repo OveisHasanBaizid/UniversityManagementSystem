@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
 public class DataBase {
     static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<Admin> admins = new ArrayList<>();
@@ -13,6 +12,20 @@ public class DataBase {
     static ArrayList<BorrowedBook> borrowedBooks = new ArrayList<>();
     static ArrayList<Food> foods = new ArrayList<>();
     static ArrayList<ReservedFood> reservedFoods = new ArrayList<>();
+    public DataBase(){
+        try {
+            readStudents();
+            readAdmins();
+            readCourses();
+            readProfessors();
+            readBooks();
+            readBorrowedBooks();
+            readFoods();
+            readReservedFoods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static Student getStudent(String stdNumber) {
         for (Student s : students) {
             if (s.getStdNumber().equals(stdNumber))
@@ -59,6 +72,13 @@ public class DataBase {
         }
         return null;
     }
+    public static ReservedFood getReservedFood(int code) {
+        for (ReservedFood b: reservedFoods) {
+            if (b.getCodeFood() == code)
+                return b;
+        }
+        return null;
+    }
     public static Food getFood(int code) {
         for (Food f: foods) {
             if (f.getCode() == code)
@@ -96,8 +116,9 @@ public class DataBase {
         fileWriter.close();
     }
 
-    public static void readApartments() throws IOException {
-        FileReader fileReader = new FileReader("apartments.txt");
+    public static void readAdmins() throws IOException {
+        admins = new ArrayList<>();
+        FileReader fileReader = new FileReader("Admins.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
         while ((s = br.readLine()) != null) {
@@ -117,6 +138,7 @@ public class DataBase {
     }
 
     public static void readBooks() throws IOException {
+        books = new ArrayList<>();
         FileReader fileReader = new FileReader("Books.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -137,6 +159,7 @@ public class DataBase {
     }
 
     public static void readFoods() throws IOException {
+        foods = new ArrayList<>();
         FileReader fileReader = new FileReader("Foods.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -157,6 +180,7 @@ public class DataBase {
     }
 
     public static void readBorrowedBooks() throws IOException {
+        borrowedBooks = new ArrayList<>();
         FileReader fileReader = new FileReader("BorrowedBooks.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -177,6 +201,7 @@ public class DataBase {
     }
 
     public static void readReservedFoods() throws IOException {
+        reservedFoods = new ArrayList<>();
         FileReader fileReader = new FileReader("ReservedFoods.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -197,6 +222,7 @@ public class DataBase {
     }
 
     public static void readProfessors() throws IOException {
+        professors = new ArrayList<>();
         FileReader fileReader = new FileReader("Professors.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -217,6 +243,7 @@ public class DataBase {
     }
 
     public static void readCourses() throws IOException {
+        courses = new ArrayList<>();
         FileReader fileReader = new FileReader("Courses.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;
@@ -237,6 +264,7 @@ public class DataBase {
     }
 
     public static void readStudents() throws IOException {
+        students = new ArrayList<>();
         FileReader fileReader = new FileReader("Students.txt");
         BufferedReader br = new BufferedReader(fileReader);
         String s;

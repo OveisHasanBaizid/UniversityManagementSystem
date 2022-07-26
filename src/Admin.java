@@ -2,16 +2,8 @@ import java.util.Scanner;
 
 public class Admin extends Person {
     private String username;
-    private String password;
+    private final String password;
     private TypeAdmin typeAdmin;
-
-    public Admin(String firstName, String lastName, int age, String address, String username, String password, TypeAdmin typeAdmin) {
-        super(firstName, lastName, age, address);
-        this.username = username;
-        this.password = password;
-        this.typeAdmin = typeAdmin;
-    }
-
     public Admin(String line) {
         super(line);
         String[] array = line.split(",");
@@ -48,9 +40,6 @@ public class Admin extends Person {
         return typeAdmin;
     }
 
-    public void setTypeAdmin(TypeAdmin typeAdmin) {
-        this.typeAdmin = typeAdmin;
-    }
 
     public void setTypeAdmin(String typeAdmin) {
         if (typeAdmin.equals("Education"))
@@ -66,16 +55,9 @@ public class Admin extends Person {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String coder() {
@@ -89,5 +71,10 @@ public class Admin extends Person {
             return TypeAdmin.Nutrition;
         else
             return TypeAdmin.Library;
+    }
+
+    @Override
+    public String toString() {
+        return super.coder()+"\tUsername : " + username + "\tPassword : " + password +"\tTypeAdmin : " + typeAdmin;
     }
 }

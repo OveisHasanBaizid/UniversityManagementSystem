@@ -1,5 +1,6 @@
 import com.sun.tools.javac.Main;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuManager {
@@ -36,12 +37,18 @@ public class MenuManager {
         }
         if (i==1)
             System.out.println("The list of admins is empty.");
+        menu();
     }
     public void addAdmin() {
         System.out.println("----------------------------------");
         System.out.println("* * * Add Admin  * * *");
         DataBase.admins.add(new Admin(input));
         System.out.println("New admin added successfully");
+        try {
+            DataBase.writeAdmins();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
     public void removeAdmin() {
@@ -64,6 +71,11 @@ public class MenuManager {
         }
         DataBase.admins.remove(admin);
         System.out.println("Admin removed successfully");
+        try {
+            DataBase.writeAdmins();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 }

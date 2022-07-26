@@ -25,10 +25,12 @@ public class Book {
     public Book(Scanner input) {
         System.out.print("Code book : ");
         this.code = input.nextInt();
+        input.nextLine();
         System.out.print("Title : ");
         this.title = input.nextLine();
         System.out.print("Number Page : ");
         this.numberPage = input.nextInt();
+        input.nextLine();
         System.out.print("Author : ");
         this.author = input.nextLine();
         this.borrowed = false;
@@ -78,6 +80,6 @@ public class Book {
     @Override
     public String toString() {
         return "Code : " + code + "\tTitle : " + title + "\tNumber Page : " + numberPage + "\tAuthor : "
-                + author + "\tLoaned : " + borrowed;
+                + author + "\tBorrowed : " + borrowed;
     }
 }

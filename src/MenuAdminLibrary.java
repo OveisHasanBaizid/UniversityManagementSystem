@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuAdminLibrary {
@@ -37,6 +38,11 @@ public class MenuAdminLibrary {
         System.out.println("* * * Add Book  * * *");
         DataBase.books.add(new Book(input));
         System.out.println("New book added successfully");
+        try {
+            DataBase.writeBooks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -63,6 +69,11 @@ public class MenuAdminLibrary {
         }
         DataBase.books.remove(book);
         System.out.println("Book removed successfully");
+        try {
+            DataBase.writeBooks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 

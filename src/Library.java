@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Library {
@@ -6,6 +7,7 @@ public class Library {
 
     public Library(Student student) {
         this.student = student;
+        menu();
     }
 
     public void menu() {
@@ -26,9 +28,7 @@ public class Library {
             case 2 -> returnBook();
             case 3 -> listAllBooks();
             case 4 -> ListMyBorrowedBook();
-            default -> new Main();
         }
-        menu();
     }
 
     public void ListMyBorrowedBook() {
@@ -45,6 +45,7 @@ public class Library {
         }
         if (counter == 0)
             System.out.println("Your borrowed book list is empty");
+        menu();
     }
 
     public void listAllBooks() {
@@ -54,6 +55,7 @@ public class Library {
         for (Book b : DataBase.books) {
             System.out.println((i++) + ". " + b);
         }
+        menu();
     }
 
     public void returnBook() {
@@ -79,10 +81,17 @@ public class Library {
                     DataBase.borrowedBooks.remove(borrowedBook);
                     book.setBorrowed(false);
                     System.out.println("book returned successfully");
+                    try {
+                        DataBase.writeBorrowedBooks();
+                        DataBase.writeBooks();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
             }
         }
+        menu();
     }
 
     public void borrowingBook() {
@@ -91,7 +100,7 @@ public class Library {
         System.out.println("Menu Books : ");
         int i = 1;
         for (Book b : DataBase.books) {
-            System.out.println((i + 1) + ". " + b);
+                System.out.println((i + 1) + ". " + b);
         }
         Book book;
         while (true) {
@@ -112,9 +121,16 @@ public class Library {
                     DataBase.borrowedBooks.add(new BorrowedBook(student.getStdNumber(),book.getCode()));
                     book.setBorrowed(true);
                     System.out.println("book borrowed successfully");
+                    try {
+                        DataBase.writeBorrowedBooks();
+                        DataBase.writeBooks();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
             }
         }
+        menu();
     }
 }

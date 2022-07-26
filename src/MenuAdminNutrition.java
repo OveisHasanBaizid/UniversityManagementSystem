@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuAdminNutrition {
@@ -14,10 +15,10 @@ public class MenuAdminNutrition {
         System.out.println("* * * Menu Admin Nutrition  * * *");
         int item;
         do {
-            System.out.println("1.Add Book");
-            System.out.println("2.Remove Book");
-            System.out.println("3.List All books");
-            System.out.println("4.Reserved foods");
+            System.out.println("1.Add food");
+            System.out.println("2.Remove food");
+            System.out.println("3.List All foods");
+            System.out.println("4.List Reserved foods");
             System.out.println("5.Back");
             System.out.print("please choice a item :");
             item = input.nextInt();
@@ -29,7 +30,6 @@ public class MenuAdminNutrition {
             case 4 -> reservedFoods();
             default -> new Main();
         }
-        menu();
     }
 
     public void addFood() {
@@ -37,6 +37,11 @@ public class MenuAdminNutrition {
         System.out.println("* * * Add Food  * * *");
         DataBase.foods.add(new Food(input));
         System.out.println("New Food added successfully");
+        try {
+            DataBase.writeFoods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -60,6 +65,11 @@ public class MenuAdminNutrition {
         }
         DataBase.foods.remove(food);
         System.out.println("food removed successfully");
+        try {
+            DataBase.writeFoods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
     }
 
@@ -70,11 +80,12 @@ public class MenuAdminNutrition {
         for (Food f : DataBase.foods) {
             System.out.println((i++) + ". " + f);
         }
+        menu();
     }
 
     public void reservedFoods() {
         System.out.println("----------------------------------");
-        System.out.println("* * * Reserved Foods * * *");
+        System.out.println("* * * List Reserved Foods * * *");
         int i = 1;
         int countBreakfast = 0, countLunch = 0, countDinner = 0;
         for (Food f : DataBase.foods) {
@@ -89,8 +100,9 @@ public class MenuAdminNutrition {
                     countDinner += x;
             }
         }
-        System.out.print("Number of reserved breakfast : " + countBreakfast);
-        System.out.print("Number of reserved lunches : " + countLunch);
-        System.out.print("Number of reserved dinner : " + countDinner);
+        System.out.println("Number of reserved breakfast : " + countBreakfast);
+        System.out.println("Number of reserved lunches : " + countLunch);
+        System.out.println("Number of reserved dinner : " + countDinner);
+        menu();
     }
 }

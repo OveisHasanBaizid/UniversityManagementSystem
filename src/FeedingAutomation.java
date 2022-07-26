@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FeedingAutomation {
@@ -6,6 +7,7 @@ public class FeedingAutomation {
 
     public FeedingAutomation(Student student) {
         this.student = student;
+        menu();
     }
 
     public void menu() {
@@ -37,7 +39,7 @@ public class FeedingAutomation {
         int counter = 0, i = 1;
         for (ReservedFood r : DataBase.reservedFoods) {
             if (r.getStudentNumber().equals(student.getStdNumber()))
-                System.out.println((i + 1) + ". " + DataBase.getFood(r.getCodeFood()));
+                System.out.println((i++) + ". " + DataBase.getFood(r.getCodeFood()));
             counter++;
         }
         if (counter == 0)
@@ -59,16 +61,22 @@ public class FeedingAutomation {
         while (true) {
             System.out.print("Enter code food for remove : ");
             int code = input.nextInt();
-            if (!student.existCourse(code)) {
-                System.out.println("There is no course with this code.");
+            ReservedFood reservedFood = DataBase.getReservedFood(code);
+            if (reservedFood==null) {
+                System.out.println("There is no food with this code.");
                 System.out.print("enter y try again : ");
                 char ch = input.next().charAt(0);
                 input.nextLine();
                 if (ch != 'y')
                     menu();
             } else {
-                student.removeCourse(code);
-                System.out.println("course removed successfully");
+                DataBase.reservedFoods.remove(reservedFood);
+                System.out.println("food removed successfully");
+                try {
+                    DataBase.writeReservedFoods();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }
@@ -97,6 +105,11 @@ public class FeedingAutomation {
             } else {
                 DataBase.reservedFoods.add(new ReservedFood(student.getStdNumber(), food.getCode()));
                 System.out.println("The food was successfully reserved.");
+                try {
+                    DataBase.writeReservedFoods();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }

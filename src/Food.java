@@ -32,6 +32,7 @@ public class Food {
             else
                 break;
         }
+        input.nextLine();
         System.out.print("Name : ");
         this.name = input.nextLine();
         System.out.print("Amount : ");
@@ -106,6 +107,6 @@ public class Food {
     }
     @Override
     public String toString() {
-        return "Code : " + code + "\tName : " + name + "\tAmount : " + amount + "\tTypeFood=" + typeFood + "\tPrice=" + price;
+        return "Code: " + code + "\tName: " + name + "\tAmount: " + amount + "\tTypeFood :" + typeFood + "\tPrice :" + price;
     }
 }
